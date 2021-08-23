@@ -13,18 +13,6 @@ function landingPage() {
     <>
       <h1>Searching for keyword: {globalState}</h1>
 
-  <input 
-        type="text" 
-        // defaultValue= {globalState}
-        onChange={(e) => setNewName(e.target.value)}>
-
-        </input>
-
-
-      <button onClick={() => dispatch(setUsername(newName))}>
-        Search.
-      </button>
-      {"  "}
      
       <br />
       <br />
