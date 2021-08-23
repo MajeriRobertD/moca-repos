@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import { connect } from "react-redux"
-import { setInfo } from "../redux/actions/main"
-import styles from '../styles/Home.module.css'
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import { incrementCounter, decrementCounter } from "../store/counter/action";
+import { setUsername } from "../store/username/action";
+import Link from "next/link";
 
-function Home(props) {
-  const { name, setInfo } = props
-  const [newName, setName] = useState("")
+function landingPage() {
+  const globalState = useSelector((state) => state.username.username);
+  const dispatch = useDispatch();
+  const [newName, setNewName] = useState('')
 
   return (
-    <div className={styles.container}>
-      <p>Enter a user name ( {name} ):</p>
-      <input 
+    <>
+      <h1>Searching for keyword: {globalState}</h1>
+
+  <input 
         type="text" 
-        value={newName} 
-        onChange={(e) => setName(e.target.value)}>
+        // defaultValue= {globalState}
+        onChange={(e) => setNewName(e.target.value)}>
 
         </input>
-        <button onClick={() => setInfo(newName)}>
-          Search
-        </button>
-    </div>
-  )
+
+
+      <button onClick={() => dispatch(setUsername(newName))}>
+        Search.
+      </button>
+      {"  "}
+     
+      <br />
+      <br />
+    
+
+      
+    </>
+  );
 }
 
-const mapStateToProps = state => {
- return { name: state.main.name }
-}
-
-const mapDispatchToProps = {
-  setInfo
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default landingPage;
