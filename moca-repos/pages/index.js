@@ -13,6 +13,9 @@ function landingPage() {
     <>
       <h1>Searching for keyword: {globalState}</h1>
 
+
+
+
      
       <br />
       <br />
