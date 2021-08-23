@@ -12,7 +12,7 @@ function landingPage() {
   return (
     <>
       <h1>Searching for keyword: {globalState}</h1>
-
+//lalalalala
   <input 
         type="text" 
         // defaultValue= {globalState}
