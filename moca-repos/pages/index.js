@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../store/username/action";
 import Link from "next/link";
 
-function counter() {
+function landingPage() {
   const globalState = useSelector((state) => state.username.username);
   const dispatch = useDispatch();
   const [newName, setNewName] = useState('')
@@ -35,4 +35,4 @@ function counter() {
   );
 }
 
-export default counter;
+export default landingPage;
