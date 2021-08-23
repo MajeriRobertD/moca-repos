@@ -3,7 +3,7 @@ import { SET_USERNAME } from "./type";
 const initialState = {
     server: "",
     client: "",
-    username: 0,
+    username: ' ',
 }
 //test
 // Creating my reducer
