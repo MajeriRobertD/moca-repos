@@ -71,6 +71,7 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const [searchValue, setSearchValue] = React.useState("");
   const dispatch = useDispatch();
+  
 
   return (
     <div className={classes.root}>
