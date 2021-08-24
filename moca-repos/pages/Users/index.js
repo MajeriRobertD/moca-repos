@@ -30,8 +30,8 @@ function usersListPage() {
   const [nextPage, setNextPage] = useState(1)
 
   const [users, setUsers] = useState([]);
-  const octokit = new Octokit({auth:"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" })
-//   const auth = createTokenAuth("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");
+  const octokit = new Octokit({})
+
 // const { token } = await auth();
 
   useEffect(async () => {
