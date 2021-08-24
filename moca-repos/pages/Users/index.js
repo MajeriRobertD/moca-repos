@@ -7,8 +7,10 @@ import Link from "next/link";
 import { makeStyles } from '@material-ui/core/styles'
 
 import axios from 'axios'
-import { Grid } from "@material-ui/core";
+import { Grid, List } from "@material-ui/core";
 import { Octokit } from "@octokit/core";
+
+import UsersComponent from "../../components/UsersComponent";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,13 +40,7 @@ function usersListPage() {
        setLoading(true);
        
 
-    // axios({
-    //   method:"get",
-    //   url: `https://api.github.com/users/${globalState}/repos`,
-    // }).then(res => {
-    //   setLoading(false)
-    //   setRepos(res.data)
-    // })
+   
 
 let response = await octokit.request('GET /search/users', {
   q: globalState,
@@ -94,15 +90,17 @@ function getNextPage(){
   return (
     <>
 
-    <Grid>
+  
 
-    <div>
-      {users.map(renderUsers)}
+    <List>
+    {users.map((user) => (
+            <UsersComponent user={user}></UsersComponent>
+          ))}
       <button onClick={()=> {setNextPage(nextPage+1); console.log(nextPage)}}>Next page</button>
-    </div>
+      </List>
 
 
-    </Grid>
+   
       
 
       
