@@ -14,21 +14,37 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   footer: {
-    color: "#4e4755",
+    color: "#8b8a9f",
     border: 0,
     margin: 0,
     background: "#120417",
     position: 'absolute',
     width: '99%',
     height: 120,
+    fontFamily: "system-ui",
   },
   infoMedia: {
     color: '#583c51'
+  },
+  infoMediaFacebook: {
+    color: '#3069ec'
+  },
+  infoMediaInstagram: {
+    color: '#f876de',
+  },
+  infoMediaLinkIn: {
+    color: '#0f63a7',
+  },
+  infoMediaGitHub: {
+    color: '#ffffff',
   },
   lastGrid: {
     marginBottom: "10px",
   },
 });
+
+
+
 
 function FooterComponent() {
   const classes = useStyles();
@@ -73,16 +89,16 @@ function FooterComponent() {
                 justifyContent="space-around"
                 alignItems="center"
               >
-                <Link href="https://www.facebook.com" target="_blank" className={classes.infoMedia}>
+                <Link href="https://www.facebook.com" target="_blank" className={classes.infoMediaFacebook}>
                   <FacebookIcon></FacebookIcon>
                 </Link>
-                <Link href="https://www.instagram.com" target="_blank" className={classes.infoMedia}>
+                <Link href="https://www.instagram.com" target="_blank" className={classes.infoMediaInstagram}>
                   <InstagramIcon></InstagramIcon>
                 </Link>
-                <Link href="https://www.linkedin.com" target="_blank" className={classes.infoMedia}>
+                <Link href="https://www.linkedin.com" target="_blank" className={classes.infoMediaLinkIn}>
                   <LinkedInIcon></LinkedInIcon>
                 </Link>
-                <Link href="https://www.github.com" target="_blank" className={classes.infoMedia}>
+                <Link href="https://www.github.com" target="_blank" className={classes.infoMediaGitHub}>
                   <GitHubIcon></GitHubIcon>
                 </Link>
               </Grid>

@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     objectFit:'cover',
     position: 'relative',
     height: 500,
-   // backgroundColor: 'red',
   },
 
   imageBackground: {
@@ -56,8 +55,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 function landingPage() {
   const globalState = useSelector((state) => state.username.username);
   const dispatch = useDispatch();
@@ -70,7 +67,6 @@ function landingPage() {
     <>
       {/* <h1>Searching for keyword: {globalState}</h1> */}
 
-
       {/* <Container style={{ backgroundImage:'url(./background.jpg)',backgroundSize: '1000 px',backgroundAttachment: 'fixed', margin: '0',width:"1000", height:'10000'}}> */}
       <Container className={classes.sizeContainer}>
         <Container className={classes.imageBackground}></Container>
@@ -80,11 +76,8 @@ function landingPage() {
         <InputBase placeholder={globalState} className={classes.inputBaseText}/>
       </Container>
 
-     
       <br />
       <br />
-    
-
       
     </>
   );

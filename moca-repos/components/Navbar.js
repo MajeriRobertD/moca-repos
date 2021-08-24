@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     color: '#a5acaeb5',
+    fontFamily: "system-ui",
+    fontSize: 30,
+
   },
   search: {
     position: 'relative',
@@ -116,10 +119,6 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
               onChange={e => setSearchValue(e.target.value)}
             />
-
-
-
-
             </form>
           </div>
         </Toolbar>
