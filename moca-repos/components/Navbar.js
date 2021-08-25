@@ -109,6 +109,8 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
              Moca Repo 
           </Typography>
+
+          
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -122,7 +124,7 @@ export default function SearchAppBar() {
                  
                  }}>
             <InputBase
-              placeholder="Search…"
+              placeholder="Search user…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
