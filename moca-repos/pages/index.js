@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     objectFit:'cover',
     position: 'relative',
-    height: 500,
+    height: '90vh',
   },
 
   imageBackground: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundSize: '100% 100%',
     margin: 0,
-    height: 600,
+    height:'90vh',
     objectFit:'cover',
     maxWidth: '100%',
     padding: 0,  
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     color: '#120417',
     top: 170,
-    left: '38%',
+    left: '28%',
     fontSize: 30,
     fontWeight: 800,
   },
@@ -70,17 +70,13 @@ function landingPage() {
 
       {/* <Container style={{ backgroundImage:'url(./background.jpg)',backgroundSize: '1000 px',backgroundAttachment: 'fixed', margin: '0',width:"1000", height:'10000'}}> */}
       <Container className={classes.sizeContainer}>
-        <Container className={classes.imageBackground}></Container>
+        <Container className={classes.imageBackground}>
         <Typography className={classes.tipoSearch} variant="h6" noWrap>
-            Searching for keyword:
+            Want someone's moca repos? Type their name below
         </Typography>
         <InputBase placeholder={globalState} className={classes.inputBaseText}/>
       </Container>
-
-      <br />
-      <br />
-      
-
+      </Container>
     </>
   );
 }
