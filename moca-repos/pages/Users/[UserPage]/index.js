@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import RenderRepo from "../../../components/renderRepo";
 import { useRouter } from "next/router";
-// import { incrementCounter, decrementCounter } from "../store/counter/action";
-// import { setUsername } from "../store/username/action";
-import Link from "next/link";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import { render } from "react-dom";
-function userPage() {
-  const globalState = useSelector((state) => state.username.username);
-  const dispatch = useDispatch();
-  const [newName, setNewName] = useState("");
+
+function userPage({ user }) {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const { query } = useRouter();
@@ -35,7 +28,12 @@ function userPage() {
       <Grid>
         <div>
           {repos.map((repo) => (
-            <RenderRepo key={repo.id} repo={repo}></RenderRepo>
+            <RenderRepo
+              key={repo.id}
+              repo={repo}
+              user={user}
+              theQuery={theQuery}
+            ></RenderRepo>
           ))}
         </div>
       </Grid>
