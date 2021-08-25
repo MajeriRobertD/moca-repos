@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { incrementCounter, decrementCounter } from "../store/counter/action";
-import { setUsername } from "../store/username/action";
-import Link from "next/link";
+
 import Container from "@material-ui/core/Container";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
-
+import Router, { useRouter } from 'next/router'
+import { setUsername } from "../store/username/action";
 
 const useStyles = makeStyles((theme) => ({
   sizeContainer: {
@@ -63,6 +62,8 @@ function landingPage() {
 
   const classes = useStyles();
 
+  const router = useRouter()
+
 
   return (
     <>
@@ -74,7 +75,17 @@ function landingPage() {
         <Typography className={classes.tipoSearch} variant="h6" noWrap>
             Want someone's moca repos? Type their name below
         </Typography>
-        <InputBase placeholder={globalState} className={classes.inputBaseText}/>
+        <form onSubmit={(e) => {e.preventDefault(); 
+                 dispatch(setUsername(newName))
+                 {
+                   router.push('/Users')
+
+                 }
+                 
+                 }}>
+        <InputBase required placeholder='Search for an username...' className={classes.inputBaseText} onChange={e => setNewName(e.target.value)}/>
+
+        </form>
       </Container>
       </Container>
     </>
