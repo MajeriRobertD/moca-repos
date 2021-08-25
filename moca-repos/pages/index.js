@@ -5,8 +5,13 @@ import Container from "@material-ui/core/Container";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+
+import Button from '@material-ui/core/Button';
+
+
 import Router, { useRouter } from 'next/router'
 import { setUsername } from "../store/username/action";
+
 
 const useStyles = makeStyles((theme) => ({
   sizeContainer: {
@@ -16,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     objectFit:'cover',
     position: 'relative',
-    height: '90vh',
+    height: '85vh',
   },
 
   imageBackground: {
@@ -24,45 +29,74 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundSize: '100% 100%',
     margin: 0,
-    height:'90vh',
+    height:'85vh',
     objectFit:'cover',
     maxWidth: '100%',
     padding: 0,  
-    position: 'absolute',
+    position: 'relative',
+    maxWidth: '100%',
+    minWidth: '101%',
   },
  
   tipoSearch: {
     position: 'absolute',
     color: '#120417',
-    top: 170,
-    left: '28%',
-    fontSize: 30,
+    top: '25%',
+    textAlign: 'center',
+    left: '31%',
+    fontSize: 45,
     fontWeight: 800,
+    background: '-webkit-linear-gradient(#883340, #120417, #b4323d )',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent',
   },
 
   inputBaseText: {
     position: 'absolute',
     color: 'white',
-    top: 280,
+    textAlign: 'center',
+    top: '45%',
     left: '40%',
     fontSize: 30,
     fontWeight: 700,
     backgroundColor: '#5f656930',
     width: '20%'
-  }
+  },
+  clearButton: {
+    backgroundColor: '#cc6929',
+    width: 80,
+    height: 30,
+    position: 'absolute',
+    top: '65%',
+    left: '48%',
+    color: '#291f32',
+    fontFamily:'system-ui',
+    fontSize: 22,
+    fontWeight: 700,
+  },
 
 }));
 
 
 function landingPage() {
-  const globalState = useSelector((state) => state.username.username);
-  const dispatch = useDispatch();
-  const [newName, setNewName] = useState("");
-
-
   const classes = useStyles();
 
+  const globalState = useSelector((state) => state.username.username);
+  const dispatch = useDispatch();
+  const [newName, setNewName] = useState(globalState);
+
+  const [infoSearch, setInfoSearch] = useState("");
+
+
+  function clearSearch() {
+   
+    setInfoSearch("");
+    console.log("clearSearch: ", infoSearch, "global: ", globalState);
+  }
+ 
+
   const router = useRouter()
+
 
 
   return (
@@ -72,9 +106,16 @@ function landingPage() {
       {/* <Container style={{ backgroundImage:'url(./background.jpg)',backgroundSize: '1000 px',backgroundAttachment: 'fixed', margin: '0',width:"1000", height:'10000'}}> */}
       <Container className={classes.sizeContainer}>
         <Container className={classes.imageBackground}>
-        <Typography className={classes.tipoSearch} variant="h6" noWrap>
-            Want someone's moca repos? Type their name below
+        <Typography className={classes.tipoSearch} variant="h6" Wrap>
+            Want someone's moca repos?
+            <br></br>
+             Type their name below
         </Typography>
+
+        <InputBase placeholder={globalState} className={classes.inputBaseText}/>
+
+        <Button className={classes.clearButton} onClick={clearSearch}>Clear</Button>
+
         <form onSubmit={(e) => {e.preventDefault(); 
                  dispatch(setUsername(newName))
                  {
@@ -86,6 +127,7 @@ function landingPage() {
         <InputBase required placeholder='Search for an username...' className={classes.inputBaseText} onChange={e => setNewName(e.target.value)}/>
 
         </form>
+
       </Container>
       </Container>
     </>
