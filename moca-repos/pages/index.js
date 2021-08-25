@@ -58,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
 function landingPage() {
   const globalState = useSelector((state) => state.username.username);
   const dispatch = useDispatch();
-  const [newName, setNewName] = useState('')
+  const [newName, setNewName] = useState("");
+
 
   const classes = useStyles();
 
@@ -79,6 +80,7 @@ function landingPage() {
       <br />
       <br />
       
+
     </>
   );
 }

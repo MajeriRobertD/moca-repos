@@ -7,7 +7,12 @@ import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
 import Image from 'next/image'
+
+import Router, { useRouter } from 'next/router'
+
+
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../store/username/action";
 import logo from '../public/logo.png'
@@ -86,6 +91,10 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const [searchValue, setSearchValue] = React.useState("");
   const dispatch = useDispatch();
+  const {pathname} = Router
+  console.log('from nav', pathname)
+
+  const router = useRouter()
 
   return (
     <div className={classes.root}>
@@ -109,7 +118,13 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <form onSubmit={(e) => {e.preventDefault(); 
-                 dispatch(setUsername(searchValue)) }}>
+                 dispatch(setUsername(searchValue))
+                 if(pathname != '/Users'){
+                   router.push('/Users')
+
+                 }
+                 
+                 }}>
             <InputBase
               placeholder="Search…"
               classes={{
