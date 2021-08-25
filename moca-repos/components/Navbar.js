@@ -99,11 +99,7 @@ export default function SearchAppBar() {
       <AppBar  position='static' className={classes.appBar}>
         <Toolbar>
           <IconButton className={classes.logo}
-            // edge="start"
-            // className={classes.menuButton}
-            // color="inherit"
-            // aria-label="open drawer"
-            
+            onClick={()=>router.push('/')}
           >
            <Image src={logo} className={classes.logo} alt="logo"/>
             {/* <MenuIcon /> */}
@@ -111,6 +107,8 @@ export default function SearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
              Moca Repo 
           </Typography>
+
+          
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -124,7 +122,7 @@ export default function SearchAppBar() {
                  
                  }}>
             <InputBase
-              placeholder="Search…"
+              placeholder="Search user…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,

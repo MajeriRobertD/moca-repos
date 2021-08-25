@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { incrementCounter, decrementCounter } from "../store/counter/action";
-import { setUsername } from "../store/username/action";
-import Link from "next/link";
+
 import Container from "@material-ui/core/Container";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+
 import Button from '@material-ui/core/Button';
+
+
+import Router, { useRouter } from 'next/router'
+import { setUsername } from "../store/username/action";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,12 +87,17 @@ function landingPage() {
 
   const [infoSearch, setInfoSearch] = useState("");
 
+
   function clearSearch() {
    
     setInfoSearch("");
     console.log("clearSearch: ", infoSearch, "global: ", globalState);
   }
  
+
+  const router = useRouter()
+
+
 
   return (
     <>
@@ -103,11 +111,23 @@ function landingPage() {
             <br></br>
              Type their name below
         </Typography>
-       
+
         <InputBase placeholder={globalState} className={classes.inputBaseText}/>
 
         <Button className={classes.clearButton} onClick={clearSearch}>Clear</Button>
-        
+
+        <form onSubmit={(e) => {e.preventDefault(); 
+                 dispatch(setUsername(newName))
+                 {
+                   router.push('/Users')
+
+                 }
+                 
+                 }}>
+        <InputBase required placeholder='Search for an username...' className={classes.inputBaseText} onChange={e => setNewName(e.target.value)}/>
+
+        </form>
+
       </Container>
       </Container>
     </>
