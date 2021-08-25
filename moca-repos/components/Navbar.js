@@ -7,12 +7,8 @@ import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
 import Image from 'next/image'
-
 import Router, { useRouter } from 'next/router'
-
-
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../store/username/action";
 import logo from '../public/logo.png'
@@ -22,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin:0,
     flexGrow: 1,
+    maxWidth: '100%',
+    minWidth: '101%',
   },
   logo: {
     minWidth: '8%',
