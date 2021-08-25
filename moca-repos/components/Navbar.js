@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin:0,
     flexGrow: 1,
+    
     maxWidth: '100%',
-    minWidth: '101%',
+    minWidth: '100%',
   },
   logo: {
     minWidth: '8%',
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: '#1c1024',
+    height:'70px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -105,7 +107,7 @@ export default function SearchAppBar() {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-             Moca Repo 
+             Moca Repos 
           </Typography>
 
           

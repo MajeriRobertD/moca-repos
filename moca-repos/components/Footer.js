@@ -17,15 +17,15 @@ const useStyles = makeStyles({
     color: "#8b8a9f",
     border: 0,
     margin: 0,
-    bottom: '-10%',
+    bottom: 0,
     background: "#120417",
     position: 'absolute',
     
     width: '100%',
-    height: 140,
+    height: 115,
     fontFamily: "system-ui",
-    // maxWidth: '100%',
-    // minWidth: '100%',
+    overflow: 'hidden',
+   
     
   },
   infoMedia: {

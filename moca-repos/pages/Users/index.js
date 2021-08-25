@@ -6,7 +6,7 @@ import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 
 import axios from "axios";
-import { Container, Grid, List } from "@material-ui/core";
+import { Container, Grid, List, Typography } from "@material-ui/core";
 import { Octokit } from "@octokit/core";
 
 import UsersComponent from "../../components/UsersComponent";
@@ -14,6 +14,8 @@ import UsersComponent from "../../components/UsersComponent";
 import Button from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#1c1024',
     color: 'white',
     
+  },
+  resultText:{
+    marginLeft:'20px',
   }
 }));
 
@@ -73,7 +78,10 @@ function usersListPage() {
 
   return (
     <>
+    <Typography className={classes.resultText} variant="h4">   {totalCount} users named '{globalState}' were found</Typography>
+    <Divider variant="middle"/>
       <Grid container>
+        
         {users.map((user) => (
           <Grid item key={user.id} xs={12} md={6} lg={4}>
             <UsersComponent user={user}></UsersComponent>

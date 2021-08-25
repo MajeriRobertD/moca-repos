@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import userPage from '../pages/Users/[UserPage]';
+
 
 export default function RepoDetails(props){
 
@@ -10,11 +12,20 @@ const [details,setDetails] = useState({});
 const [commits,setCommits] = useState([]);
 const router = useRouter();
 const { UserPage, repoName } = router.query;
+console.log(router)
+
 
 useEffect(() => {
-  getDetails();
-  getCommits();
-},[]);
+
+  try{
+
+    getDetails();
+    getCommits();
+    
+  } catch(exception){
+    console.log(exception)
+  }
+},[UserPage]);
 
 const getDetails = async() => {
     const res = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}`);

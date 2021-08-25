@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 
 import Button from '@material-ui/core/Button';
-
+import TextField from '@material-ui/core/TextField'
 
 import Router, { useRouter } from 'next/router'
 import { setUsername } from "../store/username/action";
@@ -35,15 +35,15 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,  
     position: 'relative',
     maxWidth: '100%',
-    minWidth: '101%',
+    minWidth: '100%',
   },
  
   tipoSearch: {
     position: 'absolute',
     color: '#120417',
-    top: '25%',
+    top: '20%',
     textAlign: 'center',
-    left: '31%',
+    left: '29%',
     fontSize: 45,
     fontWeight: 800,
     background: '-webkit-linear-gradient(#883340, #120417, #b4323d )',
@@ -60,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 30,
     fontWeight: 700,
     backgroundColor: '#5f656930',
-    width: '20%'
+    width: '20%',
+    
   },
   clearButton: {
     backgroundColor: '#cc6929',
@@ -107,12 +108,12 @@ function landingPage() {
       <Container className={classes.sizeContainer}>
         <Container className={classes.imageBackground}>
         <Typography className={classes.tipoSearch} variant="h6" Wrap>
-            Want someone's moca repos?
+            Want to explore someone's moca repos?
             <br></br>
-             Type their name below
+             Type their name below:
         </Typography>
 
-        <InputBase placeholder={globalState} className={classes.inputBaseText}/>
+       
 
         <Button className={classes.clearButton} onClick={clearSearch}>Clear</Button>
 
@@ -124,7 +125,9 @@ function landingPage() {
                  }
                  
                  }}>
-        <InputBase required placeholder='Search for an username...' className={classes.inputBaseText} onChange={e => setNewName(e.target.value)}/>
+        <InputBase required   id='userName'
+            
+             fullWidth placeholder='Search for an username...' className={classes.inputBaseText} onChange={e => setNewName(e.target.value)}/>
 
         </form>
 
