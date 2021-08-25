@@ -3,7 +3,7 @@ import RepoDetails from '../../../components/RepoDetails';
 
 const repoPage = () => {
     return(
-        <RepoDetails/>
+        <RepoDetails />
     )
 }
 
