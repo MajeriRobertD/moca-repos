@@ -30,12 +30,11 @@ export default function UsersComponent(user) {
     router.push(`/Users/${user.user.login}`)
     
   };
-    console.log(user)
   return (
    
       <ListItem button 
       selected={selectedIndex === 0} 
-        onclick={(event) =>{handleListItemClick(event, 0)} }
+        onClick={(event) =>{handleListItemClick(event, 0)} }
       key={user.user.id}
       
       >
