@@ -14,18 +14,41 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   footer: {
-    color: "white",
+    color: "#8b8a9f",
     border: 0,
     margin: 0,
-    background: "black",
+    background: "#120417",
+    position: 'absolute',
+    width: '99%',
+    height: 120,
+    fontFamily: "system-ui",
+  },
+  infoMedia: {
+    color: '#583c51'
+  },
+  infoMediaFacebook: {
+    color: '#3069ec'
+  },
+  infoMediaInstagram: {
+    color: '#f876de',
+  },
+  infoMediaLinkIn: {
+    color: '#0f63a7',
+  },
+  infoMediaGitHub: {
+    color: '#ffffff',
   },
   lastGrid: {
     marginBottom: "10px",
   },
 });
 
+
+
+
 function FooterComponent() {
   const classes = useStyles();
+
   return (
     <footer className={classes.footer}>
       <Box m={2}>
@@ -33,22 +56,27 @@ function FooterComponent() {
           <Grid container spacing={5}>
             <Grid item xs={12} sm={6}>
               <Box borderBottom={1} m={1}>
-                {" "}
+                {/* {" "} */}
                 Contact{" "}
               </Box>
-              <Box m={1}>Moca Repos</Box>
+              {/* <Box m={1}>Moca Repos</Box> */}
               <Grid container direction="row" alignItems="center" spacing={1}>
                 <Box m={1}>
-                  <PhoneIcon></PhoneIcon>
+                  <PhoneIcon className={classes.infoMedia}></PhoneIcon>
                 </Box>
-                <Box m={1}>0733229530</Box>
+                <Box m={1} className={classes.infoMedia}>0733229530</Box>
+                <Box m={1}>
+                  <EmailIcon className={classes.infoMedia}></EmailIcon>
+                </Box>
+                <Box m={1} className={classes.infoMedia}>moca.repos@yahoo.com</Box>
+             
               </Grid>
-              <Grid container direction="row" alignItems="center" spacing={1}>
+              {/* <Grid container direction="row" alignItems="center" spacing={1}>
                 <Box m={1}>
                   <EmailIcon></EmailIcon>
                 </Box>
                 <Box m={1}>moca.repos@yahoo.com</Box>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box borderBottom={1} m={1}>
@@ -61,16 +89,16 @@ function FooterComponent() {
                 justifyContent="space-around"
                 alignItems="center"
               >
-                <Link href="https://www.facebook.com" target="_blank">
+                <Link href="https://www.facebook.com" target="_blank" className={classes.infoMediaFacebook}>
                   <FacebookIcon></FacebookIcon>
                 </Link>
-                <Link href="https://www.instagram.com" target="_blank">
+                <Link href="https://www.instagram.com" target="_blank" className={classes.infoMediaInstagram}>
                   <InstagramIcon></InstagramIcon>
                 </Link>
-                <Link href="https://www.linkedin.com" target="_blank">
+                <Link href="https://www.linkedin.com" target="_blank" className={classes.infoMediaLinkIn}>
                   <LinkedInIcon></LinkedInIcon>
                 </Link>
-                <Link href="https://www.github.com" target="_blank">
+                <Link href="https://www.github.com" target="_blank" className={classes.infoMediaGitHub}>
                   <GitHubIcon></GitHubIcon>
                 </Link>
               </Grid>
@@ -85,7 +113,7 @@ function FooterComponent() {
             className={classes.lastGrid}
           >
             <CopyrightIcon></CopyrightIcon>
-            <Box>Copyright 2021. All rights reserved</Box>
+            <Box>Moca Repos 2021. All rights reserved</Box>
           </Grid>
         </Container>
       </Box>

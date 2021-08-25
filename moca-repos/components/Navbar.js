@@ -7,15 +7,30 @@ import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
+import Image from 'next/image'
+
 import Router, { useRouter } from 'next/router'
+
 
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../store/username/action";
+import logo from '../public/logo.png'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin:0,
     flexGrow: 1,
+  },
+  logo: {
+    minWidth: '8%',
+    minHeight: '8%',
+    maxWidth: '8%',
+    maxHeight: '8%',
+  },
+  appBar: {
+    backgroundColor: '#1c1024',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -26,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+    color: '#a5acaeb5',
+    fontFamily: "system-ui",
+    fontSize: 30,
+
   },
   search: {
     position: 'relative',
@@ -79,18 +98,20 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar  position='static'>
+      <AppBar  position='static' className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
+          <IconButton className={classes.logo}
+            // edge="start"
+            // className={classes.menuButton}
+            // color="inherit"
+            // aria-label="open drawer"
+            
           >
-            <MenuIcon />
+           <Image src={logo} className={classes.logo} alt="logo"/>
+            {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+             Moca Repo 
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -113,10 +134,6 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
               onChange={e => setSearchValue(e.target.value)}
             />
-
-
-
-
             </form>
           </div>
         </Toolbar>
