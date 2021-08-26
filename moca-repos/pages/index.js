@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { Octokit } from "@octokit/core";
 import Container from "@material-ui/core/Container";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField'
 
 import Router, { useRouter } from 'next/router'
 import { setUsername } from "../store/username/action";
-
+import { initialState } from ".././store/username/reducer";
 
 const useStyles = makeStyles((theme) => ({
   sizeContainer: {
@@ -86,11 +86,13 @@ function landingPage() {
   const dispatch = useDispatch();
   const [newName, setNewName] = useState(globalState);
 
-  const [infoSearch, setInfoSearch] = useState("");
+  const [infoSearch, setInfoSearch] = useState('');
 
+
+  
 
   function clearSearch() {
-   
+    console.log('yayaya', username); 
     setInfoSearch("");
     console.log("clearSearch: ", infoSearch, "global: ", globalState);
   }
@@ -115,7 +117,13 @@ function landingPage() {
 
        
 
-        <Button className={classes.clearButton} onClick={clearSearch}>Clear</Button>
+        {/* <Button className={classes.clearButton} onClick={clearSearch}>Clear</Button> */}
+        <Button className={classes.clearButton} onClick={(e) => {e.preventDefault();
+            dispatch(setUsername(''));
+            //dispatch(setUsername(infoSearch))
+          
+           console.log('tryyy', infoSearch);
+        }}>Clear</Button>
 
         <form onSubmit={(e) => {e.preventDefault(); 
                  dispatch(setUsername(newName))

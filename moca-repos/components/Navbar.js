@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,8 +11,13 @@ import Image from 'next/image'
 import Router, { useRouter } from 'next/router'
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../store/username/action";
-import logo from '../public/logo.png'
+import logo from '../public/logo.png';
+import username from "../store/username/reducer";
+import { connect } from 'react-redux';
+// import search from "./search/reducer"
 
+
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,14 +92,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+ export default function SearchAppBar({animesInStore}) {
   const classes = useStyles();
   const [searchValue, setSearchValue] = React.useState("");
   const dispatch = useDispatch();
   const {pathname} = Router
   console.log('from nav', pathname)
 
-  const router = useRouter()
+  const router = useRouter();
+
+
+  // useEffect(() => {
+  //   setSearchValue('');
+  //   console.log('yayaya', username);  
+  //   console.log(Object.keys(animesInStore));
+  // }, [animesInStore.username]);
+
+  // useEffect(() => {
+  //   console.log('name: ',searchValue);
+  // },[searchValue]);
+
+
+
+
 
   return (
     <div className={classes.root}>
@@ -117,12 +137,13 @@ export default function SearchAppBar() {
             </div>
             <form onSubmit={(e) => {e.preventDefault(); 
                  dispatch(setUsername(searchValue))
+                 //setSearchValue('');
                  if(pathname != '/Users'){
                    router.push('/Users')
 
                  }
                  
-                 }}>
+            }}>
             <InputBase
               placeholder="Search user…"
               classes={{
@@ -131,7 +152,12 @@ export default function SearchAppBar() {
               }}
               inputProps={{ 'aria-label': 'search' }}
               onChange={e => setSearchValue(e.target.value)}
+              
             />
+            {/* <DeleteForeverIcon 
+              onClick={e => setSearchValue('searchValue')}
+              
+            /> */}
             </form>
           </div>
         </Toolbar>
@@ -139,3 +165,19 @@ export default function SearchAppBar() {
     </div>
   );
 }
+
+// const mapStateToProps = state => {
+//   return {
+//      animesInStore: state.username,
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//      increaseVote: id => dispatch(increaseVote(id)),
+//      decreaseVote: id => dispatch(decreaseVote(id)),
+//   };
+// };
+
+
+//export default connect(mapStateToProps, null)(SearchAppBar);
