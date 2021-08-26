@@ -11,6 +11,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Divider from '@material-ui/core/Divider';
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -27,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
   theButton1: {
     backgroundColor: '#1c1024',
     color: 'white',
-
-    marginRight: 0,
+    
+    
   },
   theButton2: {
     backgroundColor: '#1c1024',
@@ -45,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     minHeight: 800,
     backgroundColor: theme.palette.background.paper,
+    
+    
 
+  },
+  parentContainer:{
+    marginLeft:'auto',
   },
 }));
 
@@ -68,24 +75,31 @@ function usersListPage() {
   }, [globalState]);
 
   useEffect(async () => {
+
+    try{
     let response = await octokit.request('GET /search/users', {
       q: globalState,
       per_page: '30',
       page: nextPage,
-    });
-
+    })
+    
     setUsers(response.data.items);
     setTotalCount(response.data.total_count);
-    console.log(response);
+
     console.log(nextPage);
+  } catch(e) {
+    console.log(e)
+    setUsers([])
+    setTotalCount(0)
+  }
   }, [globalState, nextPage]);
 
   return (
     <>
-
+  
     <Typography className={classes.resultText} variant="h4">   {totalCount} users named '{globalState}' were found</Typography>
     <Divider variant="middle"/>
-      <Grid container className={classes.containerPosition}>
+      <Grid container  className={classes.containerPosition}>
 
         {users.map((user) => (
           <Grid item key={user.id} xs={12} md={6} lg={4}>
@@ -94,8 +108,12 @@ function usersListPage() {
         ))}
       </Grid>
       <>
+          <Grid container justifyContent='flex-end'
+ 
+  >
         {nextPage > 1 ? (
           <>
+          <Grid item container xs={6} justify={"flex-start"} >
             <Button
               className={classes.theButton2}
               variant="contained"
@@ -107,6 +125,7 @@ function usersListPage() {
             >
               Previous page
             </Button>
+            </Grid>
           </>
         ) : (
           <> </>
@@ -115,7 +134,8 @@ function usersListPage() {
         <>
           {totalCount > 30 * nextPage ? (
             <>
-              <Button
+            <Grid item container xs={6} justify={"flex-end"}>
+              <Button  align="right"
                 className={classes.theButton1}
                 onClick={() => {
                   setNextPage(nextPage + 1);
@@ -126,12 +146,15 @@ function usersListPage() {
               >
                 Next Page
               </Button>
+              </Grid>
             </>
           ) : (
             <> </>
           )}
         </>
+        </Grid>
       </>
+     
     </>
   );
 }
