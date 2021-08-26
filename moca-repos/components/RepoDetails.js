@@ -73,7 +73,6 @@ const getCommits = async() => {
         
         <Typography variant='h5' component='h5' gutterBottom> Repository name: {details.name}
         </Typography>
-        {/* <Typography variant='h5' component='h5' gutterBottom>Languages used: </Typography> */}
         {languagesComponent}
         {filesComponent}
       </React.Fragment>
