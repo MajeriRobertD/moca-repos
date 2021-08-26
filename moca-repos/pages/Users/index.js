@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
   theButton1: {
     backgroundColor: '#1c1024',
     color: 'white',
-
-    marginRight: 0,
+    
+    
   },
   theButton2: {
     backgroundColor: '#1c1024',
@@ -47,7 +47,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     minHeight: 800,
     backgroundColor: theme.palette.background.paper,
+    
+    
 
+  },
+  parentContainer:{
+    marginLeft:'auto',
   },
 }));
 
@@ -91,10 +96,10 @@ function usersListPage() {
 
   return (
     <>
-
+  
     <Typography className={classes.resultText} variant="h4">   {totalCount} users named '{globalState}' were found</Typography>
     <Divider variant="middle"/>
-      <Grid container className={classes.containerPosition}>
+      <Grid container  className={classes.containerPosition}>
 
         {users.map((user) => (
           <Grid item key={user.id} xs={12} md={6} lg={4}>
@@ -103,8 +108,12 @@ function usersListPage() {
         ))}
       </Grid>
       <>
+          <Grid container justifyContent='flex-end'
+ 
+  >
         {nextPage > 1 ? (
           <>
+          <Grid item container xs={6} justify={"flex-start"} >
             <Button
               className={classes.theButton2}
               variant="contained"
@@ -116,6 +125,7 @@ function usersListPage() {
             >
               Previous page
             </Button>
+            </Grid>
           </>
         ) : (
           <> </>
@@ -124,7 +134,8 @@ function usersListPage() {
         <>
           {totalCount > 30 * nextPage ? (
             <>
-              <Button
+            <Grid item container xs={6} justify={"flex-end"}>
+              <Button  align="right"
                 className={classes.theButton1}
                 onClick={() => {
                   setNextPage(nextPage + 1);
@@ -135,12 +146,15 @@ function usersListPage() {
               >
                 Next Page
               </Button>
+              </Grid>
             </>
           ) : (
             <> </>
           )}
         </>
+        </Grid>
       </>
+     
     </>
   );
 }
