@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useRouter } from 'next/router';
+import { Container } from "@material-ui/core";
 
 import RenderRepo from '../../../components/renderRepo';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +13,12 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import theme from "../../../styles/theme";
 
 const useStyles = makeStyles({
+  parentContainer:{
+    minHeight: 800,
+    width:'100%',
+    
+
+  },
   root: {
     width: "100%",
     padding: "2%",
@@ -19,7 +26,6 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignItems: "space-between",
-    minHeight: 800,
     
     // background:
       // "radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,13,1) 50% ,rgba(36,9,45,1) 100%)",
@@ -73,7 +79,7 @@ function userPage({ user }) {
 
   return (
     <>
-
+    <Grid className={classes.parentContainer}>
         <InputBase
           placeholder="Search for repos"
           classes={{
@@ -105,6 +111,7 @@ function userPage({ user }) {
             ))}
         
 
+      </Grid>
       </Grid>
     </>
   );
