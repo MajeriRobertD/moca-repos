@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
-import RenderRepo from "../../../components/renderRepo";
-import { useRouter } from "next/router";
-import axios from "axios";
-import Grid from "@material-ui/core/Grid";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+
+import RenderRepo from '../../../components/renderRepo';
+import Grid from '@material-ui/core/Grid';
 
 function userPage({ user }) {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const { query } = useRouter();
   const theQuery = query.UserPage;
+
   useEffect(() => {
     try {
       setLoading(true);
       axios({
-        method: "get",
+        method: 'get',
         url: `https://api.github.com/users/${theQuery}/repos`,
       }).then((res) => {
         setLoading(false);
@@ -23,6 +25,7 @@ function userPage({ user }) {
       console.log(exception);
     }
   }, [query]);
+
   return (
     <>
       <Grid>

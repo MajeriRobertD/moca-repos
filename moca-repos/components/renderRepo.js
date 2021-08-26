@@ -1,17 +1,19 @@
-import React from "react";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
+
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export default function RenderRepo({ repo, theQuery }) {
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
-  console.log("bjodjfisdiojsaio", theQuery);
+  console.log('bjodjfisdiojsaio', theQuery);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
     router.push(`/Users/${theQuery}/${repo.login}`);
   };
+
   return (
     <ListItem
       button
