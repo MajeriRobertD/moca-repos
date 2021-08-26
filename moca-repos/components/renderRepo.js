@@ -20,8 +20,7 @@ const useStyles = makeStyles({
     // height: "100%",
     // boxShadow: "0 3px 10px 10px rgba(18, 4, 23, .3)",
     textAlign: "center",
-    background:
-      "radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,38,1) 50% ,rgba(136,7,7,1) 100%)",
+    background: 'radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,38,1) 50% ,rgb(54 42 76) 100%)',
     color: "white",
 
     "&:hover": {
