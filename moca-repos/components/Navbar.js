@@ -1,4 +1,8 @@
 import React from 'react';
+import Image from 'next/image';
+import Router, { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,18 +11,15 @@ import InputBase from '@material-ui/core/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Image from 'next/image'
-import Router, { useRouter } from 'next/router'
-import { useSelector, useDispatch } from "react-redux";
-import { setUsername } from "../store/username/action";
-import logo from '../public/logo.png'
 
+import { setUsername } from '../store/username/action';
+import logo from '../public/logo.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin:0,
+    margin: 0,
     flexGrow: 1,
-    
+
     maxWidth: '100%',
     minWidth: '100%',
   },
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: '#1c1024',
-    height:'70px',
+    height: '70px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -42,9 +43,8 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     color: '#a5acaeb5',
-    fontFamily: "system-ui",
+    fontFamily: 'system-ui',
     fontSize: 30,
-
   },
   search: {
     position: 'relative',
@@ -89,49 +89,47 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('');
   const dispatch = useDispatch();
-  const {pathname} = Router
-  console.log('from nav', pathname)
+  const { pathname } = Router;
+  console.log('from nav', pathname);
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className={classes.root}>
-      <AppBar  position='static' className={classes.appBar}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <IconButton className={classes.logo}
-            onClick={()=>router.push('/')}
-          >
-           <Image src={logo} className={classes.logo} alt="logo"/>
+          <IconButton className={classes.logo} onClick={() => router.push('/')}>
+            <Image src={logo} className={classes.logo} alt="logo" />
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-             Moca Repos 
+            Moca Repos
           </Typography>
 
-          
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <form onSubmit={(e) => {e.preventDefault(); 
-                 dispatch(setUsername(searchValue))
-                 if(pathname != '/Users'){
-                   router.push('/Users')
-
-                 }
-                 
-                 }}>
-            <InputBase
-              placeholder="Search user…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                dispatch(setUsername(searchValue));
+                if (pathname != '/Users') {
+                  router.push('/Users');
+                }
               }}
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={e => setSearchValue(e.target.value)}
-            />
+            >
+              <InputBase
+                placeholder="Search user…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={(e) => setSearchValue(e.target.value)}
+              />
             </form>
           </div>
         </Toolbar>
