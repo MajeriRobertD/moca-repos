@@ -11,6 +11,8 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Divider from '@material-ui/core/Divider';
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -68,16 +70,23 @@ function usersListPage() {
   }, [globalState]);
 
   useEffect(async () => {
+
+    try{
     let response = await octokit.request('GET /search/users', {
       q: globalState,
       per_page: '30',
       page: nextPage,
-    });
-
+    })
+    
     setUsers(response.data.items);
     setTotalCount(response.data.total_count);
-    console.log(response);
+
     console.log(nextPage);
+  } catch(e) {
+    console.log(e)
+    setUsers([])
+    setTotalCount(0)
+  }
   }, [globalState, nextPage]);
 
   return (

@@ -131,6 +131,7 @@ const useStyles = makeStyles((theme) => ({
               }}
             >
               <InputBase
+              required
                 placeholder="Search user…"
                 classes={{
                   root: classes.inputRoot,
