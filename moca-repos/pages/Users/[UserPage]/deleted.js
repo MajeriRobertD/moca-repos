@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import RepoDetails from '../../../components/RepoDetails';
 
 const repoPage = () => {
     return(
-        <RepoDetails />
+         <RepoDetails /> 
     )
 }
 

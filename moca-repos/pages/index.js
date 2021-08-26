@@ -100,7 +100,7 @@ function landingPage() {
           </Typography>
 
           <Button className={classes.clearButton} onClick={clearSearch}>
-            Clear
+            MOCA
           </Button>
 
           <form

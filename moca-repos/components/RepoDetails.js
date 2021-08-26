@@ -1,10 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Typography } from '@material-ui/core';
+
 import { useRouter } from 'next/router';
-// import userPage from '../pages/Users/[UserPage]';
+
+import { Container, makeStyles, Typography } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    fontSize: 20,
+    minHeight: 800,
+    backgroundColor:'#1c1024',
+    //background: 'radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,38,1) 50% ,rgb(64 15 64) 100%)',
+    marginBottom: 20,
+  },
+  nameTipo: {
+    marginTop: 15,
+    color: '#fff',
+    'border-bottom': '1px solid grey',
+    fontSize: 35,
+    textAlign: 'center',
+  },
+  infoRepo: {
+    color: '#fff',
+    fontSize: 23,
+    
+  },
+  infoRepoRoot: {
+    display: 'flex',
+    marginLeft: 0,
+    marginTop: 15,
+
+  },
+  fontStyle: {
+    fontSize: 30,
+    'border-bottom': '1px solid grey',
+    marginBottom: 10,    
+  }
+}));
+
 
 export default function RepoDetails(props){
+
+  const classes = useStyles();
   
 const [details,setDetails] = useState({});
 const [commits,setCommits] = useState([]);
@@ -41,27 +79,28 @@ const getCommits = async() => {
     setCommits(commitsContent.data.tree);
 }
 
-    let filesComponent = <div>loading</div>
+    let filesComponent = <Container>loading</Container>
         if (commits.length > 0){
             filesComponent = 
             <React.Fragment>
-              <Typography>Folders:</Typography>
+
+              <Typography className={classes.fontStyle}><strong>Folders:</strong></Typography>
               {commits.map(el => {
                 return(
-                  <Typography key={el.sha}> {el.path}</Typography>
+                  <Typography className={classes.infoRepo} key={el.sha}> {el.path}</Typography>
                 )
               })
         }
         </React.Fragment>
         }
-        let languagesComponent = <div>No programming languages used</div>
+        let languagesComponent = <Container>No programming languages used</Container>
         if (languages.length > 0){
             languagesComponent = 
             <React.Fragment>
-              <Typography>List of languages used:</Typography>
+              <Typography className={classes.fontStyle}><strong>List of languages used:</strong></Typography>
               {languages.map(el => {
                 return(
-                  <Typography key={el} > {el}</Typography>
+                  <Typography className={classes.infoRepo} key={el} > {el}</Typography>
                 )
               })
         }
@@ -69,18 +108,18 @@ const getCommits = async() => {
         }
     if(details.name !== undefined){
       return (
-        <React.Fragment>
-        
-        <Typography variant='h5' component='h5' gutterBottom> Repository name: {details.name}
-        </Typography>
-        {languagesComponent}
-        {filesComponent}
-      </React.Fragment>
+        <Container className={classes.root}>
+            <Typography className={classes.nameTipo}><strong>{details.name}</strong></Typography>
+            <Container className={classes.infoRepoRoot}>
+              <Container className={classes.infoRepo}> {filesComponent} </Container>
+              <Container className={classes.infoRepo}> {languagesComponent} </Container>
+            </Container>
+          
+      </Container>
     )
    } else {
      return(
-      <Typography >Page is loading
-      </Typography>
+      <Typography className={classes.root}>Page is loading</Typography>
      )
    }
   }
