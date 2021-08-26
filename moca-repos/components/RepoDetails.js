@@ -34,9 +34,6 @@ const getLanguages = async() =>{
    const keys = Object.keys(languages.data);
    setLanguages(keys);
 }
-if(true){
-  getLanguages();
-}
 const getCommits = async() => {
     const repo = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits`);
     const repoData = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits/${repo.data[0]['sha']}`);
