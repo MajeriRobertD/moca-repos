@@ -113,7 +113,7 @@ function usersListPage() {
   >
         {nextPage > 1 ? (
           <>
-          <Grid item container xs={6} justify={"flex-start"} >
+          <Grid item container xs={6} justifyContent={"flex-start"} >
             <Button
               className={classes.theButton2}
               variant="contained"
@@ -134,7 +134,7 @@ function usersListPage() {
         <>
           {totalCount > 30 * nextPage ? (
             <>
-            <Grid item container xs={6} justify={"flex-end"}>
+            <Grid item container xs={6} justifyContent={"flex-end"}>
               <Button  align="right"
                 className={classes.theButton1}
                 onClick={() => {
