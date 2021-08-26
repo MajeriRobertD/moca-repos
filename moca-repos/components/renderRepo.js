@@ -1,3 +1,4 @@
+
 import React from "react";
 import Card from "@material-ui/core/Card";
 import Container from "@material-ui/core/Container";
@@ -37,16 +38,28 @@ const useStyles = makeStyles({
   },
 });
 
+import React from 'react';
+import { useRouter } from 'next/router';
+
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+
 export default function RenderRepo({ repo, theQuery }) {
   const classes = useStyles();
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+
   console.log("bjodjfisdiojsaio", repo);
+
+  console.log('bjodjfisdiojsaio', theQuery);
+
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
     router.push(`/Users/${theQuery}/${repo.login}`);
   };
+
   return (
     <Card
       className={classes.root}
