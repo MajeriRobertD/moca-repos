@@ -104,6 +104,7 @@ function landingPage() {
           </Button>
 
           <form
+            id="body-form"
             onSubmit={(e) => {
               e.preventDefault();
               dispatch(setUsername(newName));
