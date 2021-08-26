@@ -11,6 +11,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import folders from "../public/folders.png";
 
+
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 const useStyles = makeStyles({
   root: {
     margin: "20px",
@@ -25,8 +29,8 @@ const useStyles = makeStyles({
     "&:hover": {
       // transform: "translateY(-10px)",
       background: "#120417",
-      color: "white",
-      boxShadow: "0 3px 10px 10px whitesmoke",
+      color: "white ",
+      boxShadow: "0 3px 10px 10px radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,38,1) 50% ,rgba(136,7,7,1) 100%)",
       cursor: "pointer",
       transform: "scale(1.2, 1.2)",
     },
@@ -38,11 +42,6 @@ const useStyles = makeStyles({
   },
 });
 
-import React from 'react';
-import { useRouter } from 'next/router';
-
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 
 export default function RenderRepo({ repo, theQuery }) {
