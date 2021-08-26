@@ -1,7 +1,9 @@
+
 import React from 'react';
 import Image from 'next/image';
 import Router, { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
+
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -12,8 +14,12 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+
+
 import { setUsername } from '../store/username/action';
 import logo from '../public/logo.png';
+
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+ export default function SearchAppBar({animesInStore}) {
   const classes = useStyles();
   const [searchValue, setSearchValue] = React.useState('');
   const dispatch = useDispatch();
@@ -95,6 +101,8 @@ export default function SearchAppBar() {
   console.log('from nav', pathname);
 
   const router = useRouter();
+
+
 
   return (
     <div className={classes.root}>
@@ -112,6 +120,7 @@ export default function SearchAppBar() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -130,6 +139,7 @@ export default function SearchAppBar() {
                 inputProps={{ 'aria-label': 'search' }}
                 onChange={(e) => setSearchValue(e.target.value)}
               />
+
             </form>
           </div>
         </Toolbar>
@@ -137,3 +147,19 @@ export default function SearchAppBar() {
     </div>
   );
 }
+
+// const mapStateToProps = state => {
+//   return {
+//      animesInStore: state.username,
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//      increaseVote: id => dispatch(increaseVote(id)),
+//      decreaseVote: id => dispatch(decreaseVote(id)),
+//   };
+// };
+
+
+//export default connect(mapStateToProps, null)(SearchAppBar);

@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   theContainer: {
-    marginRight: '0%',
+
+    marginRight:'0%',
+    backgroundColor: 'blue',
+    minHeight: 800,
+
   },
   theButton1: {
     backgroundColor: '#1c1024',
@@ -30,8 +34,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#1c1024',
     color: 'white',
   },
-  resultText: {
-    marginLeft: '20px',
+
+  resultText:{
+    margin:'10px',
+    textAlign: 'center',
+
+  },
+  containerPosition: {
+    width: "100%",
+    fontSize: 20,
+    minHeight: 800,
+    backgroundColor: theme.palette.background.paper,
+    margin: 20,
+
   },
 }));
 
@@ -68,12 +83,11 @@ function usersListPage() {
 
   return (
     <>
-      <Typography className={classes.resultText} variant="h4">
-        {' '}
-        {totalCount} users named '{globalState}' were found
-      </Typography>
-      <Divider variant="middle" />
-      <Grid container>
+
+    <Typography className={classes.resultText} variant="h4">   {totalCount} users named '{globalState}' were found</Typography>
+    <Divider variant="middle"/>
+      <Grid container className={classes.containerPosition}>
+
         {users.map((user) => (
           <Grid item key={user.id} xs={12} md={6} lg={4}>
             <UsersComponent user={user}></UsersComponent>

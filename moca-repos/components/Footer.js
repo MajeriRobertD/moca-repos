@@ -19,8 +19,10 @@ const useStyles = makeStyles({
     border: 0,
     margin: 0,
     bottom: 0,
-    background: '#120417',
-    position: 'absolute',
+
+    background: "#120417",
+    //marginTop: 90,
+    position: 'relative',
 
     width: '100%',
     height: 115,

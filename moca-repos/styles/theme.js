@@ -16,6 +16,9 @@ const theme = createTheme({
     background: {
       default: '#fff',
     },
+    minHeightPage: {
+      minHeight: 800,
+    }
   },
 });
 
