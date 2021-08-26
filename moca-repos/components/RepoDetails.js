@@ -1,89 +1,86 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import userPage from '../pages/Users/[UserPage]';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    fontSize: 20,
-    minHeight: 800,
-    backgroundColor: theme.palette.background.paper,
-    marginBottom: 20,
-  },
-  nameTipo: {
-    marginTop: 15,
-    color: '#5b2a7b',
-    'border-bottom': '1px solid grey',
-    fontSize: 24,
-  },
-  infoRepo: {
-    color: '#a894b5',
-    fontSize: 23,
-  }
-}));
+// import userPage from '../pages/Users/[UserPage]';
 
 export default function RepoDetails(props){
+  
+const [details,setDetails] = useState({});
+const [commits,setCommits] = useState([]);
+const [languages,setLanguages] = useState([]);
+const router = useRouter();
+const { UserPage, repoName } = router.query;
 
-  const classes = useStyles();
+useEffect(() => {
 
-  const [loading,setLoading] = useState("");
-  const [details,setDetails] = useState({});
-  const [commits,setCommits] = useState([]);
-  const router = useRouter();
-  const { UserPage, repoName } = router.query;
-  console.log(router)
+  try{
 
-  useEffect(() => {
-
-    try{
-      getDetails();
-      getCommits();
-      
-    } catch(exception){
-      console.log(exception)
-    }
-  },[UserPage]);
-
-  const getDetails = async() => {
-      const res = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}`);
-      setDetails(res.data);
+    getDetails();
+    getCommits();
+    getLanguages();
+    
+  } catch(exception){
+    console.log(exception)
   }
-  const getCommits = async() => {
-      const repo = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits`);
-      const repoData = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits/${repo.data[0]['sha']}`);
-      const commitsContent = await axios.get(`${repoData.data.commit.tree.url}`);
-      setCommits(commitsContent.data.tree);
-  }
+},[UserPage]);
 
-      let filesComponent = <Container>loading</Container>
-          if (commits.length > 0){
-              filesComponent = 
-              <React.Fragment>
-                {commits.map(el => {
-                  console.log(el);
-                  return(
-                    <Typography key={el.sha} className={classes.infoRepo} variant='h3' component='h3' gutterBottom> {el.path}</Typography>
-                  )
-                })
-          }
-          </React.Fragment>
-          }
-      if(details.name !== undefined){
-        return (
-          <Container className={classes.root}>
-            <React.Fragment >
-              <Typography className={classes.nameTipo} variant='h3' component='h3' gutterBottom><strong>Name:</strong> {details.name}</Typography>
-              <Typography className={classes.nameTipo} variant='h3' component='h3' gutterBottom><strong>Language:</strong> {details.language}</Typography>
-              <Container className={classes.infoRepo}> {filesComponent} </Container>
-          </React.Fragment>
-        </Container>
-      )
-    } else {
-      return(
-        <Typography className={classes.root} variant='h3' component='h3' gutterBottom>Page is loading
+const getDetails = async() => {
+    const res = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}`);
+    setDetails(res.data);
+}
+const getLanguages = async() =>{
+   const languages = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/languages`);
+   const keys = Object.keys(languages.data);
+   setLanguages(keys);
+}
+const getCommits = async() => {
+    const repo = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits`);
+    const repoData = await axios.get(`https://api.github.com/repos/${UserPage}/${repoName}/commits/${repo.data[0]['sha']}`);
+    const commitsContent = await axios.get(`${repoData.data.commit.tree.url}`);
+    setCommits(commitsContent.data.tree);
+}
+
+    let filesComponent = <div>loading</div>
+        if (commits.length > 0){
+            filesComponent = 
+            <React.Fragment>
+              <Typography>Folders:</Typography>
+              {commits.map(el => {
+                return(
+                  <Typography key={el.sha}> {el.path}</Typography>
+                )
+              })
+        }
+        </React.Fragment>
+        }
+        let languagesComponent = <div>No programming languages used</div>
+        if (languages.length > 0){
+            languagesComponent = 
+            <React.Fragment>
+              <Typography>List of languages used:</Typography>
+              {languages.map(el => {
+                return(
+                  <Typography key={el} > {el}</Typography>
+                )
+              })
+        }
+        </React.Fragment>
+        }
+    if(details.name !== undefined){
+      return (
+        <React.Fragment>
+        
+        <Typography variant='h5' component='h5' gutterBottom> Repository name: {details.name}
         </Typography>
-      )
-    }
+        {languagesComponent}
+        {filesComponent}
+      </React.Fragment>
+    )
+   } else {
+     return(
+      <Typography >Page is loading
+      </Typography>
+     )
+   }
   }

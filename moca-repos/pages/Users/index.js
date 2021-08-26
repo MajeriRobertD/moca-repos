@@ -1,45 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import Link from "next/link";
+import { Octokit } from '@octokit/core';
 
-import { makeStyles } from "@material-ui/core/styles";
-
-import axios from "axios";
-import { Container, Grid, List, Typography } from "@material-ui/core";
-import { Octokit } from "@octokit/core";
-
-import UsersComponent from "../../components/UsersComponent";
-
+import UsersComponent from '../../components/UsersComponent';
+import { makeStyles } from '@material-ui/core/styles';
+import { Container, Grid, List, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
   theContainer: {
+
     marginRight:'0%',
     backgroundColor: 'blue',
     minHeight: 800,
+
   },
-  theButton1:{
+  theButton1: {
     backgroundColor: '#1c1024',
     color: 'white',
-    
-    marginRight:0,
+
+    marginRight: 0,
   },
-  theButton2:{
+  theButton2: {
     backgroundColor: '#1c1024',
     color: 'white',
-    
   },
+
   resultText:{
     margin:'10px',
     textAlign: 'center',
@@ -51,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 800,
     backgroundColor: theme.palette.background.paper,
     margin: 20,
+
   },
 }));
 
@@ -59,7 +55,7 @@ function usersListPage() {
 
   const globalState = useSelector((state) => state.username.username);
   const dispatch = useDispatch();
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState('');
 
   const [nextPage, setNextPage] = useState(1);
 
@@ -68,16 +64,14 @@ function usersListPage() {
   const [totalCount, setTotalCount] = useState(0);
   const octokit = new Octokit({});
 
-  // const { token } = await auth();
-
   useEffect(async () => {
     setNextPage(1);
   }, [globalState]);
 
   useEffect(async () => {
-    let response = await octokit.request("GET /search/users", {
+    let response = await octokit.request('GET /search/users', {
       q: globalState,
-      per_page: "30",
+      per_page: '30',
       page: nextPage,
     });
 
@@ -89,10 +83,11 @@ function usersListPage() {
 
   return (
     <>
+
     <Typography className={classes.resultText} variant="h4">   {totalCount} users named '{globalState}' were found</Typography>
     <Divider variant="middle"/>
       <Grid container className={classes.containerPosition}>
-        
+
         {users.map((user) => (
           <Grid item key={user.id} xs={12} md={6} lg={4}>
             <UsersComponent user={user}></UsersComponent>
@@ -102,7 +97,10 @@ function usersListPage() {
       <>
         {nextPage > 1 ? (
           <>
-            <Button className={classes.theButton2} variant='contained' startIcon={<NavigateBeforeIcon/>}
+            <Button
+              className={classes.theButton2}
+              variant="contained"
+              startIcon={<NavigateBeforeIcon />}
               onClick={() => {
                 setNextPage(nextPage - 1);
                 console.log(nextPage);
@@ -118,14 +116,16 @@ function usersListPage() {
         <>
           {totalCount > 30 * nextPage ? (
             <>
-          
-              <Button className={classes.theButton1}  onClick={() => {
+              <Button
+                className={classes.theButton1}
+                onClick={() => {
                   setNextPage(nextPage + 1);
                   console.log(nextPage);
-                }} variant='contained' endIcon={<NavigateNextIcon/>}>
-
+                }}
+                variant="contained"
+                endIcon={<NavigateNextIcon />}
+              >
                 Next Page
-
               </Button>
             </>
           ) : (
