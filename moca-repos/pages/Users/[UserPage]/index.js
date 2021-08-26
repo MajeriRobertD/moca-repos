@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
 
-import RenderRepo from '../../../components/renderRepo';
-import Grid from '@material-ui/core/Grid';
-import InputBase from '@material-ui/core/InputBase';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from "react";
+import RenderRepo from "../../../components/renderRepo";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  inputRoot: {
+const useStyles = makeStyles({
+  root: {
+    width: "100%",
+    padding: "2%",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    alignItems: "space-between",
+    background:
+      "radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,13,1) 50% ,rgba(36,9,45,1) 100%)",
+  },
+   inputRoot: {
     color: 'inherit',
   },
   inputInput: {
@@ -24,7 +33,19 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-}));
+});
+
+
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
+
+import RenderRepo from '../../../components/renderRepo';
+import Grid from '@material-ui/core/Grid';
+import InputBase from '@material-ui/core/InputBase';
+import { alpha, makeStyles } from '@material-ui/core/styles';
+
+
 
 function userPage({ user }) {
   const classes = useStyles();
@@ -34,6 +55,7 @@ function userPage({ user }) {
   const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
 
   useEffect(() => {
     try {
@@ -52,7 +74,8 @@ function userPage({ user }) {
 
   return (
     <>
-      <Grid>
+
+      <Grid className={classes.root}>
         <InputBase
           placeholder="Search for repos"
           classes={{
@@ -62,7 +85,7 @@ function userPage({ user }) {
           inputProps={{ 'aria-label': 'search' }}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div>
+        
           {repos
             .filter((val) => {
               if (searchTerm == '') {
@@ -81,7 +104,8 @@ function userPage({ user }) {
                 theQuery={theQuery}
               ></RenderRepo>
             ))}
-        </div>
+        
+
       </Grid>
     </>
   );
