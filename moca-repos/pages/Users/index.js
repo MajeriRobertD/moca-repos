@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     minHeight: 800,
     backgroundColor: theme.palette.background.paper,
-    margin: 20,
 
   },
 }));

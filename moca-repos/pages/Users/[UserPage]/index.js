@@ -19,6 +19,8 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "space-around",
     alignItems: "space-between",
+    minHeight: 800,
+    
     // background:
       // "radial-gradient(circle, rgba(36,9,45,1) 0%, rgba(51,13,13,1) 50% ,rgba(36,9,45,1) 100%)",
   },
